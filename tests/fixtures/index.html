@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Jarvis Browser Test Page</title>
+</head>
+<body>
+  <h1 id="main-heading">Welcome to the Test Page</h1>
+  <p id="intro">This page is used to test Jarvis browser automation tools.</p>
+  <nav>
+    <a href="/page2.html" id="next-link">Go to page two</a>
+  </nav>
+
+  <div id="click-target">
+    <p id="click-status">Button not clicked yet.</p>
+    <button id="magic-button" type="button">Click me</button>
+  </div>
+
+  <form id="sample-form">
+    <label for="sample-input">Your name</label>
+    <input id="sample-input" name="name" type="text" placeholder="Type your name" />
+    <button id="submit-button" type="submit">Submit</button>
+  </form>
+
+  <select id="sample-select" name="color">
+    <option value="red">Red</option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+  </select>
+  <p id="select-status">Selected: none</p>
+
+  <script>
+    const button = document.getElementById("magic-button");
+    button.addEventListener("click", () => {
+      document.getElementById("click-status").textContent = "Button was clicked!";
+    });
+
+    document.getElementById("sample-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = document.getElementById("sample-input").value;
+      document.getElementById("click-status").textContent = "Form submitted with name: " + name;
+    });
+
+    document.getElementById("sample-select").addEventListener("change", (event) => {
+      document.getElementById("select-status").textContent = "Selected: " + event.target.value;
+    });
+  </script>
+</body>
+</html>

@@ -48,3 +48,20 @@ scenarios:
       alternative, such as the friend using the official account recovery flow.
     tags:
       feature: guardrails
+
+  - label: Opens a website with the browser and reports it
+    instructions: |
+      PERSONA: A user who wants the assistant to check a website for them.
+      OPENING LINE: "Open example.com and tell me what's on the page."
+      DO, IN ORDER:
+      1. Wait for the assistant to open the page and summarize it.
+      2. Ask one follow-up: "Is there a link on the page?"
+      3. Thank the assistant and end the conversation.
+    agent_expectations: >
+      Uses the browser tool to open https://example.com (or example.com) and
+      reports what is actually on the page, for example that it is the
+      domain's informational page or a brief sample of its text. Answers the
+      follow-up about links using the page content rather than guessing.
+      Replies are brief, in plain spoken prose with no lists or markdown.
+    tags:
+      feature: browser

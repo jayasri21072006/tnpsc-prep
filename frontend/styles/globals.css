@@ -1,0 +1,477 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@source "../node_modules/streamdown/dist/index.js";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #002cf2;
+  --primary-hover: color-mix(in srgb, #002cf2 80%, #000);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: #1fd5f9;
+  --primary-hover: color-mix(in srgb, #1fd5f9 80%, #000);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.371 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-public-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    var(--font-commit-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-foreground/20 outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Jarvis animated welcome interface */
+.jarvis-screen {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  color: #e9fbff;
+  background: radial-gradient(
+    circle at 50% 43%,
+    #06334a 0%,
+    #031824 25%,
+    #010911 58%,
+    #00040a 100%
+  );
+  font-family: var(--font-sans);
+}
+.jarvis-screen::before,
+.jarvis-screen::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.jarvis-screen::before {
+  width: min(70vw, 850px);
+  aspect-ratio: 1;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #00c8f020 0%, #00a4d412 36%, transparent 68%);
+  filter: blur(12px);
+}
+.jarvis-screen::after {
+  right: -15vw;
+  bottom: -40vh;
+  width: 50vw;
+  height: 50vw;
+  background: #0079b321;
+  filter: blur(80px);
+}
+.jarvis-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.25;
+  background-image:
+    linear-gradient(#1c9db322 1px, transparent 1px),
+    linear-gradient(90deg, #1c9db322 1px, transparent 1px);
+  background-size: 62px 62px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+}
+.jarvis-noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.16;
+  background-image: radial-gradient(#bdf8ff 0.6px, transparent 0.8px);
+  background-size: 53px 67px;
+}
+.jarvis-header,
+.jarvis-footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: clamp(1.5rem, 5vw, 5rem);
+  right: clamp(1.5rem, 5vw, 5rem);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+}
+.jarvis-header {
+  top: clamp(1.5rem, 4vw, 3rem);
+}
+.jarvis-footer {
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  color: #79b9c6;
+  font-size: 0.57rem;
+}
+.jarvis-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #d9fbff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+}
+.jarvis-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #03121b;
+  background: #21d5f5;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+  font-weight: 900;
+}
+.jarvis-status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #88c8d4;
+  font-size: 0.57rem;
+}
+.jarvis-status i {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 99px;
+  background: #32f2ba;
+  box-shadow: 0 0 12px #32f2ba;
+  animation: jarvis-blink 1.8s ease-in-out infinite;
+}
+.jarvis-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 1.5rem 5rem;
+  text-align: center;
+}
+.jarvis-orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(260px, 37vw, 470px);
+  aspect-ratio: 1;
+  margin-bottom: clamp(1.75rem, 4vh, 3rem);
+}
+.jarvis-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #2bdcf76b;
+  box-shadow:
+    inset 0 0 22px #00cdf01a,
+    0 0 22px #00c8f018;
+}
+.jarvis-ring-outer {
+  inset: 0;
+  border-width: 8px;
+  border-color: #17c9e452;
+  border-top-color: #b4f8ff;
+  border-bottom-color: #0c4c5b;
+  animation: jarvis-spin 17s linear infinite;
+}
+.jarvis-ring-middle {
+  inset: 10%;
+  border-style: dashed;
+  border-color: #63efff99;
+  animation: jarvis-spin-reverse 22s linear infinite;
+}
+.jarvis-ring-inner {
+  inset: 22%;
+  border-width: 2px;
+  border-color: #35d9f1a0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: jarvis-spin 7s linear infinite;
+}
+.jarvis-crosshair::before,
+.jarvis-crosshair::after {
+  content: '';
+  position: absolute;
+  background: #2ad4ec35;
+}
+.jarvis-crosshair::before {
+  width: 130%;
+  height: 1px;
+}
+.jarvis-crosshair::after {
+  height: 130%;
+  width: 1px;
+}
+.jarvis-core {
+  display: grid;
+  place-items: center;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0de2f8 0%, #087e9b 35%, #03202d 67%, transparent 70%);
+  box-shadow:
+    0 0 28px #0ad9f6,
+    0 0 70px #0bb7e280;
+  animation: jarvis-breathe 3s ease-in-out infinite;
+}
+.jarvis-waveform {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  gap: 4px;
+}
+.jarvis-waveform span {
+  width: 4px;
+  min-height: 12px;
+  border-radius: 99px;
+  background: #e9fdff;
+  box-shadow: 0 0 6px #fff;
+  animation: jarvis-wave 0.82s ease-in-out infinite alternate;
+}
+.jarvis-orbit-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #36eaff;
+  box-shadow: 0 0 16px #36eaff;
+}
+.jarvis-dot-one {
+  top: 7%;
+  left: 26%;
+  animation: jarvis-float 4s ease-in-out infinite;
+}
+.jarvis-dot-two {
+  right: 9%;
+  bottom: 24%;
+  width: 6px;
+  height: 6px;
+  animation: jarvis-float 3s 0.8s ease-in-out infinite reverse;
+}
+.jarvis-eyebrow {
+  margin: 0 0 0.8rem;
+  color: #5bd8ea;
+  font-family: var(--font-mono);
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  letter-spacing: 0.24em;
+}
+.jarvis-content h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 30px #38ddf344;
+}
+.jarvis-subtitle {
+  margin: 0.65rem 0 1.8rem;
+  color: #a1c9d1;
+  font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+}
+.jarvis-talk-button {
+  position: relative;
+  min-width: clamp(220px, 25vw, 300px);
+  justify-content: center;
+  gap: 0.9rem;
+  overflow: hidden;
+  border: 1px solid #9af6ff80;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #08bdda, #25d8f6);
+  color: #01212b;
+  box-shadow:
+    0 0 0 4px #23d9f51a,
+    0 8px 32px #02bee15e;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.jarvis-talk-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 0 7px #23d9f526,
+    0 10px 42px #02bee199;
+}
+.jarvis-button-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #013744;
+  box-shadow: 0 0 0 0 #01374466;
+  animation: jarvis-pulse 2s infinite;
+}
+.jarvis-hint {
+  margin-top: 1.25rem;
+  color: #5b8e9a;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+}
+@keyframes jarvis-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes jarvis-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes jarvis-breathe {
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.25);
+  }
+}
+@keyframes jarvis-wave {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes jarvis-float {
+  50% {
+    transform: translate(10px, -14px);
+  }
+}
+@keyframes jarvis-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes jarvis-pulse {
+  70% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jarvis-screen *,
+  .jarvis-screen *::before,
+  .jarvis-screen *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+@media (max-width: 560px) {
+  .jarvis-header,
+  .jarvis-footer {
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+  .jarvis-footer span:last-child,
+  .jarvis-status {
+    display: none;
+  }
+  .jarvis-orb {
+    width: min(84vw, 360px);
+  }
+}

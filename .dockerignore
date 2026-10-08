@@ -48,6 +48,9 @@ README.md
 CONTRIBUTING.md
 LICENSE
 
+# Frontend web app (deployed separately, e.g. Vercel)
+frontend/
+
 # Coding agent files
 .claude/
 .codex/

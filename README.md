@@ -114,6 +114,38 @@ In production, use the `start` command:
 uv run python src/agent.py start
 ```
 
+## Local React frontend (included)
+
+This repo also ships the [agent-starter-react](https://github.com/livekit-examples/agent-starter-react)
+web app in the `frontend/` folder, pre-configured to talk to this agent
+(`AGENT_NAME` is set to `my-agent`, matching `src/agent.py`; LiveKit credentials
+are copied from `.env.local` into `frontend/.env.local`).
+
+Run the agent, then the frontend:
+
+```console
+uv run python src/agent.py dev
+cd frontend && pnpm dev
+```
+
+Open <http://localhost:3000> in your browser and press the mic button to speak
+with JARVIS. Video and screen sharing follow what the agent's room allows the
+session to publish.
+
+On Windows, you can start both processes from the project root with one command:
+
+```console
+ node scripts/dev.mjs
+```
+
+This starts the LiveKit agent and the Next.js frontend together. Keep the
+terminal open while using <http://localhost:3000>, and press Ctrl+C to stop
+both processes.
+
+> The token endpoint in `frontend/app/api/token/route.ts` is for local
+> development only — add an authentication layer before deploying it
+> (see the starter's README, "Token generation in production").
+
 ## Frontend & Telephony
 
 Get started quickly with our pre-built frontend starter apps, or add telephony support:
